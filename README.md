@@ -23,7 +23,10 @@ We believe in the power of community and welcome contributions from everyone who
 
 ### Developers
 
-To install and run the frontend in front of our remote API endpoint:
+Feel free to open PRs on main to implement the tasks below (or more).
+To coordinate tasking and get specifications for the next API iteration please contact.
+
+install and run the frontend in front of our remote API endpoint:
 
 1. Clone the repo locally
 1. Run `npm install`
