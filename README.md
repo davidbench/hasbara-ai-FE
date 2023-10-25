@@ -7,6 +7,12 @@ Running live on:
 
 Hasbara.ai is an interactive project designed to educate, inform, and inspire dialogue around the devastating impacts of the 2023 Gaza war. This chatbot serves as a conversational agent, programmed to simulate insightful communication on the atrocities and consequences of this horrible attack and the following armed retaliation.
 
+
+<p align="center">
+  <img src="docs/examples/ex3.jpeg" alt="Real World Example" width="280"/>
+  <p style="text-align: center"><a href="https://github.com/davidbench/hasbara-ai-FE/blob/main/docs/examples.md">See more real world examples</a></p>
+</p>
+
 ### Get Involved
 We believe in the power of community and welcome contributions from everyone who shares our vision of promoting peace through education. Here's how you can contribute:
 
