@@ -24,15 +24,17 @@ We believe in the power of community and welcome contributions from everyone who
 ### Developers
 
 Feel free to open PRs on main to implement the tasks below (or more).
-To coordinate tasking and get specifications for the next API iteration please contact.
+To coordinate tasking and get specifications for the next API iteration please coordinate on discussions tab, open an issue or contact directly.
 
-install and run the frontend in front of our remote API endpoint:
+Install and run the frontend in front of our remote API endpoint:
 
 1. Clone the repo locally
 1. Run `npm install`
 1. Run `npm run dev`
 
 ### Frontend Todos
+TODO: migrate to Github Projects
+
 - [x] color scheme and tailwind setup
 - [x] serve files and DNS forward hasbara.ai to server
 - [x] send button added for iOS support
