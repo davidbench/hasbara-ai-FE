@@ -19,7 +19,7 @@ export default function Chat() {
   
   return (
     <div className="mx-auto w-full max-w-md py-24 flex flex-col stretch flex-grow overflow-y-auto no-scrollbar">
-      <div>{messages.length < 2 ? "Say something..." : null}</div>
+      <div>{messages.length < 1 ? "Say something..." : null}</div>
       {messages.map(m => (
         <div key={m.id} style={{textAlign: m.role === 'user' ? 'left' : 'left'}} 
         {...{className: m.role === 'user' ? 
