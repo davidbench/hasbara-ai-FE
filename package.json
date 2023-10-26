@@ -12,6 +12,7 @@
     "@highlight-run/next": "^5.0.5",
     "@highlight-run/node": "^3.4.2",
     "@huggingface/inference": "^2.6.3",
+    "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@vercel/analytics": "^1.1.1",
     "ai": "^2.2.14",
@@ -21,6 +22,9 @@
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-markdown": "^9.0.0",
+    "react-textarea-autosize": "^8.5.3",
+    "remark-gfm": "^4.0.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7"
   },
