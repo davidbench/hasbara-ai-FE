@@ -4,7 +4,6 @@ import { Loader2Icon, SendHorizonalIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import { ChatRequestOptions } from "ai";
 import Textarea from "react-textarea-autosize";
-import { useEnterSubmit } from "@/lib/hooks/use-enter-submit";
 
 interface PromptFormProps {
   isLoading: boolean;
@@ -14,7 +13,6 @@ interface PromptFormProps {
 }
 
 const PromptForm: FC<PromptFormProps> = ({ isLoading, input, handleInputChange, handleSubmit }) => {
-  const { formRef, onKeyDown } = useEnterSubmit();
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -24,11 +22,18 @@ const PromptForm: FC<PromptFormProps> = ({ isLoading, input, handleInputChange, 
     }
   }, []);
   return (
-    <form onSubmit={handleSubmit} ref={formRef}>
+    <form
+      onSubmit={handleSubmit}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing) {
+          event.preventDefault();
+          handleSubmit(event);
+        }
+      }}
+    >
       <div className="relative flex max-h-60 w-full grow flex-col overflow-hidden bg-background pr-8 sm:rounded-md sm:border sm:pr-12">
         <Textarea
           ref={inputRef}
-          onKeyDown={onKeyDown}
           tabIndex={0}
           rows={1}
           value={input}
