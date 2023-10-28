@@ -7,11 +7,13 @@ import { FC } from "react";
 import React from "react";
 import { useChat } from "ai/react";
 import { useSession } from "@/contexts/SessionContext";
+import { useToast } from "@/lib/hooks/use-toast";
 
 interface ChatProps {}
 
 const Chat: FC<ChatProps> = ({}) => {
   const session = useSession();
+  const { toast } = useToast();
 
   const { isLoading, messages, input, setInput, handleInputChange, handleSubmit, append } = useChat({
     api: "https://hasbara.ai/api/chat",
@@ -19,6 +21,13 @@ const Chat: FC<ChatProps> = ({}) => {
     sendExtraMessageFields: true,
     body: {
       userSession: session,
+    },
+    onError: (error) => {
+      toast({
+        title: "Oops! Something Went Wrong",
+        description:
+          "Apologies, we're encountering an issue with the API at the moment. Our team is working to resolve this as quickly as possible. Please try again later.",
+      });
     },
   });
 
