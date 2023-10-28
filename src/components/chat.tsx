@@ -36,7 +36,7 @@ const Chat: FC<ChatProps> = ({}) => {
       <div className="pb-[200px] pt-4 md:pt-10">
         {messages.length ? (
           <>
-            <ChatList messages={messages} />
+            <ChatList messages={messages} isLoading={isLoading} />
           </>
         ) : (
           <EmptyScreen
