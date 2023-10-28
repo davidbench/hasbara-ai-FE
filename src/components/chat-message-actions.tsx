@@ -16,7 +16,7 @@ const ChatMessageActions: FC<ChatMessageActionsProps> = ({ setIsFeedbackFormOpen
   return (
     <div className={cn("flex items-center justify-end  md:absolute md:-right-10 md:-top-2 ", className)} {...props}>
       <Button variant="ghost" size="icon" onClick={setIsFeedbackFormOpen.bind(null, true)}>
-        <FlagIcon className="w-4 h-4 " />
+        <FlagIcon className="w-[18px] h-[18px] " />
         <span className="sr-only">Positive feedback</span>
       </Button>
     </div>

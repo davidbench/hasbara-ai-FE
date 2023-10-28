@@ -5,7 +5,9 @@ import { H } from "@highlight-run/node";
 import { HighlightInit } from "@highlight-run/next/client";
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
+import Navbar from "@/components/navbar";
 import { SessionProvider } from "../contexts/SessionContext";
+import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 
@@ -45,9 +47,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       )}
-      <html lang="en">
-        <body className={cn(inter.className, "bg-slate-50")}>
-          <main>{children}</main>
+      <html lang="en" suppressHydrationWarning>
+        <body className={cn(inter.className, "bg-slate-50 dark:bg-slate-950")}>
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+            <Navbar />
+            <main>{children}</main>
+          </ThemeProvider>
           <Toaster />
           <Analytics />
         </body>
