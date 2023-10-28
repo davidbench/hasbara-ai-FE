@@ -6,6 +6,7 @@ import { HighlightInit } from "@highlight-run/next/client";
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import { SessionProvider } from "../contexts/SessionContext";
+import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 
 const nondev_env = process.env.NODE_ENV !== "development";
@@ -46,7 +47,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       )}
       <html lang="en">
         <body className={cn(inter.className, "bg-slate-50")}>
-          {children}
+          <main>{children}</main>
+          <Toaster />
           <Analytics />
         </body>
       </html>
