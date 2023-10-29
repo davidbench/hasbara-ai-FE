@@ -25,7 +25,7 @@ const ChatMessage: FC<ChatMessageProps> = ({ message, isLoading, ...props }) => 
 
   return (
     <>
-      <div className={cn("group relative mb-4 flex items-start md:-ml-12")} {...props}>
+      <div id={message.id} className={cn("group relative mb-4 flex items-start md:-ml-12")} {...props}>
         <div
           className={cn(
             "flex h-8 w-8 shrink-0 select-none items-center justify-center rounded-md border shadow",
@@ -46,7 +46,13 @@ const ChatMessage: FC<ChatMessageProps> = ({ message, isLoading, ...props }) => 
           >
             {message.content}
           </MemoizedReactMarkdown>
-          {message.role == "assistant" && !isLoading && <ChatMessageActions setIsFeedbackFormOpen={setIsFeedbackFormOpen} />}
+          {message.role == "assistant" && !isLoading && (
+            <ChatMessageActions
+              setIsFeedbackFormOpen={setIsFeedbackFormOpen}
+              isFeedbackFormOpen={isFeedbackFormOpen}
+              messageId={message.id}
+            />
+          )}
         </div>
       </div>
       {message.role == "assistant" && !isLoading && isFeedbackFormOpen && <FeedbackForm setIsFeedbackFormOpen={setIsFeedbackFormOpen} />}

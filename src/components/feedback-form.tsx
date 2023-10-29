@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "./ui/textarea";
+import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -28,22 +29,16 @@ enum AgreementLevel {
   Agree = "Agree",
 }
 
-// const formSchema = z.object({
-//   feedbackCategory: z.nativeEnum(FeedbackType),
-//   agreementLevel: z.nativeEnum(AgreementLevel),
-//   body: z.string(),
-// });
-
 const formSchema = z.object({
   feedbackCategory: z.nativeEnum(FeedbackType),
   agreementLevel: z.nativeEnum(AgreementLevel),
   body: z.string(),
 });
-interface FeedbackFormProps {
+interface FeedbackFormProps extends React.ComponentProps<"div"> {
   setIsFeedbackFormOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
-const FeedbackForm: FC<FeedbackFormProps> = ({ setIsFeedbackFormOpen }) => {
+const FeedbackForm: FC<FeedbackFormProps> = ({ setIsFeedbackFormOpen, className }) => {
   const [isSending, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -56,6 +51,7 @@ const FeedbackForm: FC<FeedbackFormProps> = ({ setIsFeedbackFormOpen }) => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    // TODO handle error...
     setIsLoading(true);
     console.log("submit...", values);
 
@@ -72,7 +68,7 @@ const FeedbackForm: FC<FeedbackFormProps> = ({ setIsFeedbackFormOpen }) => {
   }
 
   return (
-    <Card className="relative">
+    <Card className={cn("relative", className)}>
       <Button variant="ghost" size="icon" onClick={setIsFeedbackFormOpen.bind(null, false)} className="absolute right-4 top-4">
         <X className="w-4 h-4" />
         <span className="sr-only">Negative feedback</span>
