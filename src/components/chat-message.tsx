@@ -17,7 +17,6 @@ interface ChatMessageProps {
 
 const ChatMessage: FC<ChatMessageProps> = ({ message, isLoading, ...props }) => {
   const [isFeedbackFormOpen, setIsFeedbackFormOpen] = useState<boolean>(false);
-
   useEffect(() => {
     // remove all feedback forms if the chat continues
     setIsFeedbackFormOpen(false);
@@ -55,7 +54,9 @@ const ChatMessage: FC<ChatMessageProps> = ({ message, isLoading, ...props }) => 
           )}
         </div>
       </div>
-      {message.role == "assistant" && !isLoading && isFeedbackFormOpen && <FeedbackForm setIsFeedbackFormOpen={setIsFeedbackFormOpen} />}
+      {message.role == "assistant" && !isLoading && isFeedbackFormOpen && (
+        <FeedbackForm message={message} setIsFeedbackFormOpen={setIsFeedbackFormOpen} />
+      )}
     </>
   );
 };

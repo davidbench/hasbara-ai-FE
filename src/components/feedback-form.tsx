@@ -2,17 +2,20 @@
 
 import * as z from "zod";
 
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, Loader2Icon, X } from "lucide-react";
 import { FC, SetStateAction, useState } from "react";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Message } from "ai/react";
 import { Textarea } from "./ui/textarea";
 import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
+import { useSession } from "@/contexts/SessionContext";
+import { useToast } from "@/lib/hooks/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 enum FeedbackType {
@@ -33,38 +36,68 @@ const formSchema = z.object({
   feedbackCategory: z.nativeEnum(FeedbackType),
   agreementLevel: z.nativeEnum(AgreementLevel),
   body: z.string(),
+  url: z.string().url().optional().or(z.string().length(0)),
 });
 interface FeedbackFormProps extends React.ComponentProps<"div"> {
   setIsFeedbackFormOpen: React.Dispatch<SetStateAction<boolean>>;
+  message: Message;
 }
 
-const FeedbackForm: FC<FeedbackFormProps> = ({ setIsFeedbackFormOpen, className }) => {
+const FeedbackForm: FC<FeedbackFormProps> = ({ message, setIsFeedbackFormOpen, className }) => {
   const [isSending, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [linkList, setLinkList] = useState<string[]>([]);
+  const session = useSession();
+  const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       feedbackCategory: FeedbackType.Msg,
-
       body: "",
+      url: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // TODO handle error...
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
-    console.log("submit...", values);
 
-    setTimeout(() => {
-      setIsSuccess(true);
-      setIsLoading(false);
-      console.log("sucess");
-      setTimeout(() => {
-        console.log("reset");
+    const links = linkList;
+    // adding the last input
+    if (values.url?.length) links.push(values.url);
 
-        // setIsFeedbackFormOpen(false);
-      }, 300);
-    }, 500);
+    const data = {
+      sessionID: session.sessionID,
+      messageID: message.id,
+      sentiment: values.agreementLevel,
+      type: values.feedbackCategory,
+      feedback: values.body,
+      feedback_ref: links,
+    };
+
+    try {
+      const response = await fetch("https://hasbara.ai/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        setIsSuccess(true);
+        setIsLoading(false);
+      } else {
+        throw new Error("failed to send feedback");
+      }
+    } catch (error) {
+      setIsSuccess(false);
+      toast({
+        title: "Oops! Something Went Wrong While Sending Your Feedback",
+        variant: "destructive",
+      });
+    }
+
+    setIsLoading(false);
   }
 
   return (
@@ -155,6 +188,56 @@ const FeedbackForm: FC<FeedbackFormProps> = ({ setIsFeedbackFormOpen, className 
                   </FormItem>
                 )}
               />
+
+              <FormField
+                control={form.control}
+                name="url"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel>Add links for reference</FormLabel>
+                    <div className="flex flex-row space-x-2 w-full">
+                      <FormControl className="w-full flex-grow">
+                        <Input placeholder="https://example.com" {...field} />
+                      </FormControl>
+                      <Button
+                        variant="outline"
+                        type="button"
+                        onClick={() => {
+                          const url = form.getValues("url");
+                          try {
+                            if (url && url.length && !linkList.includes(url)) {
+                              z.string().url().parse(url);
+                              setLinkList((perv) => [url, ...perv]);
+                            }
+                            form.setValue("url", "");
+                          } catch (error) {
+                            // this will revalidate the form
+                            form.handleSubmit(onSubmit)();
+                          }
+                        }}
+                      >
+                        Add
+                      </Button>
+                    </div>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <div className="flex flex-row flex-wrap gap-1">
+                {linkList.map((link, idx) => (
+                  <div key={idx + link} className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
+                    <a href={link} target="_blank">
+                      {link}
+                    </a>
+                    <X
+                      className="w-4 h-4 ml-2 cursor-pointer"
+                      onClick={() => {
+                        setLinkList((perv) => perv.filter((pervLink) => pervLink !== link));
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
 
               <div className="flex justify-end">
                 <Button type="submit">
