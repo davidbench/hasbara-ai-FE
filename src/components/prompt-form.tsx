@@ -25,7 +25,7 @@ const PromptForm: FC<PromptFormProps> = ({ isLoading, input, handleInputChange, 
     <form
       onSubmit={handleSubmit}
       onKeyDown={(event) => {
-        if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing) {
+        if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing && !isLoading) {
           event.preventDefault();
           handleSubmit(event);
         }
