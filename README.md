@@ -64,6 +64,7 @@ Install and run the frontend in front of our remote API endpoint:
 
 1. Clone the repo locally
 1. Run `npm install`
+1. Create `.env` file per `.env.example` to setup env
 1. Run `npm run dev`
 
 ### Frontend Todos

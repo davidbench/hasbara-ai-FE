@@ -20,9 +20,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 enum FeedbackType {
   Msg = "This specific message",
-  Chat = "This specific chat session",
+  Session = "This specific chat session",
   General = "General feedback unrelated to the session",
 }
+
+const FeedbackTypeNum = [
+  FeedbackType.Msg,     // 0
+  FeedbackType.Session, // 1
+  FeedbackType.General, // 2
+];
 
 enum AgreementLevel {
   Disagree = "Disagree",
@@ -31,6 +37,8 @@ enum AgreementLevel {
   SomewhatAgree = "Somewhat Agree",
   Agree = "Agree",
 }
+
+const BACKEND_URI = process.env.BACKEND_URI;
 
 const formSchema = z.object({
   feedbackCategory: z.nativeEnum(FeedbackType),
@@ -66,21 +74,25 @@ const FeedbackForm: FC<FeedbackFormProps> = ({ message, setIsFeedbackFormOpen, c
     if (values.url?.length) links.push(values.url);
 
     const data = {
-      sessionID: session.sessionID,
       messageID: message.id,
-      sentiment: values.agreementLevel,
-      type: values.feedbackCategory,
+      agreement: values.agreementLevel,
+      scope: FeedbackTypeNum.indexOf(values.feedbackCategory),
       feedback: values.body,
       feedback_ref: links,
     };
 
     try {
-      const response = await fetch("https://hasbara.ai/api/chat", {
+      console.log("sending feedback", data);
+      
+      const response = await fetch(`https://api.hasbara.ai/feedback`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          userSession: session,
+          feedback: data,
+        }),
       });
 
       if (response.ok) {
