@@ -38,7 +38,10 @@ We believe in the power of community and welcome contributions from everyone who
   - 70b model operational, compromise on cost and latencies on inference.
   - Lowered facts embedding space to compensate.
 - 11/1
-  - Updated backend and middleware to high caapacity, low latency k8s cluster running on Azure
+  - Updated backend and middleware to high capacity, low latency k8s cluster running on Azure
+- 11/4
+  - Further optimizations to k8s, optimizing cost to support traffic
+  - current working point $50/d, elastic 6 node cluster (generous support from Microsoft)
 - 11/7
   - Live crowdsourced feedback loop on message level to feed finetuning ops and RAG injections
 
