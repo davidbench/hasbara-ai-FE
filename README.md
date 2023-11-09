@@ -26,9 +26,21 @@ We believe in the power of community and welcome contributions from everyone who
 - Spread the Word: Share our project with your community, in educational settings, or social platforms to help us reach a wider audience.
 
 ### Model and Backend
-- Llama 7b continuosly finetuned on self curated dataset using LoRA locally on RTX4090
-- Hourly checkpoiints constantly served via HF
-- Vercel Edge functions and dedicated container for embedding and finetuning
+- 10/11
+  - Dynamic prompt injected at runtime - limited results on fact reporting and chat flow
+- 10/18
+  - Llama 7b (Mistral) continuosly finetuned on self curated dataset using LoRA locally on RTX4090
+  - Hourly checkpoiints constantly served via HF
+  - Vercel Edge functions and dedicated container for embedding and finetuning
+- 10/22
+  - first expariments with 70b parameter model, finetuning, RAG injection and middleware boundaries
+- 10/28
+  - 70b model operational, compromise on cost and latencies on inference.
+  - Lowered facts embedding space to compensate.
+- 11/1
+  - Updated backend and middleware to high caapacity, low latency k8s cluster running on Azure
+- 11/7
+  - Live crowdsourced feedback loop on message level to feed finetuning ops and RAG injections
 
 ### Developers
 
