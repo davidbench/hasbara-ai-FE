@@ -67,6 +67,8 @@ Install and run the frontend in front of our remote API endpoint:
 1. Create `.env` file per `.env.example` to setup env
 1. Run `npm run dev`
 
+If CORS is giving you issues, bypass cors checks locally with [Chrome Extension](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf)
+
 ### Frontend Todos
 TODO: migrate to Github Projects
 
