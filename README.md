@@ -16,14 +16,22 @@ Hasbara.ai is an interactive project designed to educate, inform, and inspire di
 </p>
 
 
+### What is Hasbara (noun) 
+
+*hahs−bah−rah*
+
+Originating from the verb 'l’hasbir,' which means to explain, Hasbara is a communicative act or process aimed at explaining and elucidating cultural, political, and historical backgrounds. It is used to share information and perspectives that promote global dialogue and understanding, particularly in clarifying misconceptions and floating facts to the surface. Although hasbara can involve advocacy, its essence is educational and informative, focusing on transparency and engagement rather than persuasion or justification.
+
+Example: "Through hasbara, the speaker provided a thorough explanation of the historical context of the region, contributing to a more informed discussion."
+
 ### Get Involved
 We believe in the power of community and welcome contributions from everyone who shares our vision of promoting peace through education. Here's how you can contribute:
 
-- Contribute Content: Help us expand our database by contributing articles, personal stories, scholarly research, or any relevant content that fits our educational criteria and standards.
+- Spread the Word: Share our project with your community, in educational settings, or social platforms to help us reach a wider audience.
+- Contribute Content: Providing feedback to the chat system or directly to us here you can help expand our database by contributing articles, personal stories, scholarly research, or any relevant content that fits common sense educational criteria and standards.
 - Code Contributions: Improve the chatbot's functionality, user experience, or add new features.
 - Feedback: Engage with our chat interface at [Hasbara.AI](https://hasbara.ai) and provide feedback, report bugs, or suggest improvements.
 - Resources: This being a common good project, we rely on the community for support. Donating compute or cloud credits or contributing towards the project.
-- Spread the Word: Share our project with your community, in educational settings, or social platforms to help us reach a wider audience.
 
 ### Model and Backend
 - 10/11
@@ -90,3 +98,4 @@ TODO: migrate to Github Projects
 - [x] feedback support on single message level (requires backend dev)
 - [ ] add support for multiple languages (RTL, Arabic, Spanish, French, Hebrew, Russian, etc.)
 - [ ] add support for share this conversation on social media (requires session persistance)
+
