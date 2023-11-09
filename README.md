@@ -9,7 +9,7 @@ Hasbara.ai is an interactive project designed to educate, inform, and inspire di
 
 
 <p align="center">
-  <img src="docs/examples/new_UI_Nov1st.jpeg" alt="Real World Example" width="280"/>
+  <img src="docs/examples/new_UI_Nov1st.jpeg" alt="Real World Example" width="800"/>
 </p>
 <p style="text-align: center">
   <a href="https://github.com/davidbench/hasbara-ai-FE/blob/main/docs/examples.md">See more real world examples</a>
