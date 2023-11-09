@@ -9,7 +9,7 @@ Hasbara.ai is an interactive project designed to educate, inform, and inspire di
 
 
 <p align="center">
-  <img src="docs/examples/ex3.jpeg" alt="Real World Example" width="280"/>
+  <img src="docs/examples/new_UI_Nov1st.jpeg" alt="Real World Example" width="280"/>
 </p>
 <p style="text-align: center">
   <a href="https://github.com/davidbench/hasbara-ai-FE/blob/main/docs/examples.md">See more real world examples</a>
@@ -42,6 +42,8 @@ We believe in the power of community and welcome contributions from everyone who
   - Vercel Edge functions and dedicated container for embedding and finetuning
 - 10/22
   - first expariments with 70b parameter model, finetuning, RAG injection and middleware boundaries
+- 10/24
+  - opened public repo to manage code contributions
 - 10/28
   - 70b model operational, compromise on cost and latencies on inference.
   - Lowered facts embedding space to compensate.
@@ -98,4 +100,5 @@ TODO: migrate to Github Projects
 - [x] feedback support on single message level (requires backend dev)
 - [ ] add support for multiple languages (RTL, Arabic, Spanish, French, Hebrew, Russian, etc.)
 - [ ] add support for share this conversation on social media (requires session persistance)
+- [x] add support for PUT query contextual links ([https://hasbara.ai/?s=where%20is%20gaza](https://hasbara.ai/?s=where%20is%20gaza))
 
