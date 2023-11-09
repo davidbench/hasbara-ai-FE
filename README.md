@@ -54,8 +54,8 @@ TODO: migrate to Github Projects
 - [x] user session ID generation and component
 - [x] user ID persistance in local storage
 - [x] user language and metadata relay
-- [ ] buttons for predefined questions / random questions generation
-- [ ] loading spinner on send and startup
+- [x] buttons for predefined questions / random questions generation
+- [x] loading spinner on send and startup
 - [ ] close conversation redirect and popup
 - Metadata
   - [ ] message to support image display through metadata
@@ -64,14 +64,14 @@ TODO: migrate to Github Projects
   - [ ] message video player support, small blobs (gif, mp4, etc.)
   - [ ] message online player support (youtube, vimeo, etc.)
   - [ ] send user metadata to chat API endpoint immediately to support assistant initiating conversation
-- [ ] fix useChat isLoading condition to send to message immediately upon stream end
-- [ ] middleware server with embed and DB access
-- [ ] FE fallback for API timeouts and failures
-- [ ] define CORS policy for API and relay to HF
-- [ ] add snackbar alerts support
+- [x] fix useChat isLoading condition to send to message immediately upon stream end
+- [x] middleware server with embed and DB access
+- [x] FE fallback for API timeouts and failures
+- [x] define CORS policy for API and relay to HF
+- [x] add snackbar alerts support
 - [ ] session reload if inactivity on tab for >1hr
 - [ ] add user statistics page visible to user (country histogram, word cloud, etc.)
-- [ ] feedback support general link
-- [ ] feedback support on single message level (requires backend dev)
+- [x] feedback support general link
+- [x] feedback support on single message level (requires backend dev)
 - [ ] add support for multiple languages (RTL, Arabic, Spanish, French, Hebrew, Russian, etc.)
 - [ ] add support for share this conversation on social media (requires session persistance)
